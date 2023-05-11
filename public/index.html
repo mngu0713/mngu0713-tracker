@@ -4,9 +4,119 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asian TV Show trackers</title>
+    <link href="style.css" rel="stylesheet">
+    <title>Asian Show Trackers</title>
 </head>
+
+
+
 <body>
-    <header>DECO2017 Title Testing</header>
+    <header>
+        <nav class="navbar">
+            <img class="logo" src="img/logo.png" alt="Epiverse Logo">
+            <button id="addShowBtn" aria-label="Add New TV Show">+ Add New</button>
+        </nav>
+
+        <!-- FORM POP UP
+        <form id="formModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              Add myform inputs here 
+            </div>
+        </form> -->
+
+
+       <!-- <h1>ASIAN SHOW TRACKER</h1> -->
+
+
+    <!-- FORM POP UP (after clicking "+ Add New" button ) -->
+    <dialog class="form" id="pop-up-form" aria-labelledby="form-title" aria-describedby="form-description">
+        <form class="form-container">
+          <h2 id="form-title">+ Add New</h2>
+          <p id="form-description"><i>Please fill in the details of the TV show you want to add.</i></p>
+          <!-- Add my form fields here -->
+          <div class="tv-show-details">
+            <label class="input-box">
+                <span class="details-span"><strong>Title of the Show *</strong></span> <!-- Use of astric (*) for inputs that are compulsory to fill-->
+                <input class="input-text" type="text" placeholder='The TV show title' required>
+            </label>
+            <label class="input-box">
+                <span class="details-span"><strong>Country Origin of the Show *</strong></span> <!-- The most immportant inputs (with *) are first in the form-->
+                <input class="input-text" type="text" placeholder="e.g. Japan" required>
+            </label>
+            <label class="input-box">
+                <span class="details-span"><strong>Your Watch Status *</strong></span> <!-- Label name is kept short for all inputs-->
+                <select class="input-status" name="status" data-form-required>
+                  <option disabled label="Not started" selected value=""></option>
+                  <option label="Not started" value="Not started">Not started</option>
+                  <option label="On paused" value="On paused">On paused</option>
+                  <option label="Currently watching" value="Currently watching">Currently watching</option>
+                  <option label="Completed" value="Completed">Completed</option>
+                </select>
+            </label>
+            <label class="input-box">
+                <span class="details-span"><strong>Your Rating</strong></span>
+                <input class="input-rating" type="number" placeholder="e.g. 4.5" min="0" max="5" value="4.5" step="0.1" required>
+            </label>
+            <label class="input-box">
+                <span class="details-span"><strong>Your Comment</strong></span> <!-- Form is in 2 column when the inputs fields relates to each other-->
+                <!-- <input type="text" placeholder="Leave yourself a note about this TV show..."> -->
+                <textarea class="input-textarea" placeholder='Leave yourself a note about this TV show...' maxlength='1000'></textarea>
+            </label>
+        </div>
+
+
+          <!-- Form Submission -->
+          <div id="form-button-container">
+           <!-- Form Clearing-->
+           <!-- <button type="button" class="form-button" onclick="reset()">Clear</button> -->
+           
+          <!-- Form Cancellation-->
+          <button type="button" id="cancel-form-button" onclick="closeForm(),reset()">Cancel</button>
+
+            <!-- <button type="submit">Save</button> -->
+            <button type="button" id="save-form-button" onclick="alert('Show Added')" value="Save">Save</button>
+
+        </div>
+
+         
+        </form>
+    </dialog>
+
+</header>
+
+
+
+    <main class="tracking-application-container">
+
+        <section class="side-section">
+          <!-- BLOCK 1: YOUR STATS -->
+          <article class="your-stats">
+            <h2>Your Stats</h2>
+          </article>
+
+          <!-- BLOCK 2: NEW EPISODES -->
+          <article class="new-episodes">
+            <h2>New Episodes</h2>
+          </article>
+        </section>
+
+        <section class="main-section">
+          <!-- BLOCK 3: YOUR FAV MOMENTS -->
+          <article class="your-favourite-moments">
+            <h2>Your Favourite Moments</h2>
+          </article>
+
+          <!-- BLOCK 4: YOUR SHOW LIST -->
+          <article class="your-show-list">
+            <h2>Your Show List</h2>
+          </article>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
+
+
 </html>

@@ -1,0 +1,245 @@
+
+
+/* ----- START CSS: WEB PAGE GRID ----- */
+/* Grid generated from "Layoutit!": https://grid.layoutit.com/ */
+.tracking-application-container {  
+    display: grid;
+    grid-template-columns: 0.7fr 1.8fr;
+    grid-template-rows: 1fr;
+    gap: 10px 15px;
+    grid-auto-flow: column;
+    grid-template-areas:
+      "side-section main-section";
+  }
+  
+  .side-section {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.7fr 1.3fr;
+    gap: 12px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "your-stats"
+      "new-episodes";
+    grid-area: side-section;
+  }
+  
+  .your-stats { grid-area: your-stats; }
+  
+  .new-episodes { grid-area: new-episodes; }
+  
+  .main-section {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.7fr 1.3fr;
+    gap: 12px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "your-favourite-moments"
+      "your-show-list";
+    grid-area: main-section;
+  }
+  
+  .your-favourite-moments { grid-area: your-favourite-moments; }
+  
+  .your-show-list { grid-area: your-show-list; }
+/* ----- END CSS: WEB PAGE GRID ----- */
+  
+
+/* ----- START CSS: GENERAL WEBPAGE STYLING----- */
+
+
+html {
+   background-color: #23324A;
+}
+
+.tracking-application-container {
+    /* background-color: #b66345; */
+
+    margin: 0 16px;
+    /* height: 90.5vh; */
+    height: 800px;
+    padding-bottom: 18px;
+}
+
+
+
+.main-section {
+    background-color: #172439;
+    /* height: 90vh; */
+    border-radius: 1rem 0rem 1rem 1rem;
+    border-color: #172439;
+    padding: 10px 25px 20px 50px;
+}
+
+.side-section {
+    border-radius: 1rem 0rem 1rem 1rem;
+    border-color: #172439;
+    padding: 10px 12px;
+}
+
+
+
+
+
+h2 {
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+ /* ----- START CSS: NAV BAR ----- */
+  .navbar {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #23324A;
+    padding: 5px 16.5px;
+    height: 30px;
+  }
+  
+  .logo {
+    align-items: center;
+    transform: translate(0, 1.5px);
+    height: 28px;
+    width: auto;
+  }
+  
+#addShowBtn {
+    background-color: #D5494C;
+    border: none;
+    color: white;
+    padding: 0.55rem 1.2rem 0.55rem; 
+    transform: translate(0, 2px);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 1rem 1rem 0rem 0rem;
+  }
+  /* ----- END CSS: NAV BAR ----- */
+ 
+
+  /* ----- START CSS: FORM ----- */
+  .form {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #23324A;
+    z-index: 1;
+    background-color: white;
+    padding: 0.8rem 4rem 2rem ;
+    width: 100%;
+    border-radius: 1rem;
+    max-width: 40vw;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  }
+  /* width: 100%;
+  background-color: #fff;
+  padding: 40px 60px 15px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15); */
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;  
+  }
+
+
+#form-title {
+    font-size: 20pt;
+    line-height: 30pt;
+    padding-bottom: 0;
+    position: relative;
+    color:rgb(38, 38, 38);
+  }
+  
+  #form-title::before {
+    /* this is the line beneath the form title */
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+    background: rgb(38, 38, 38);
+  }
+
+  .button {
+    display: flex;
+    padding: 10px;
+  }
+
+  #form-button-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+
+  #save-form-button {
+    background-color: #D5494C;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 0;
+    width: 80px;
+    cursor: pointer;
+  }
+
+  #cancel-form-button {
+    background-color: #d0d0d0;
+    border-radius: 20px;
+    border: none;
+    color: rgb(38, 38, 38);
+    padding: 8px 0;
+    width: 80px;
+    cursor: pointer;
+  }
+
+  #form-description {
+    padding: 0;
+    margin: 0;
+  }
+
+.input-text {
+    width: 100%;
+    padding: 6px 12px;
+    /* border-radius: 5px; */
+}
+
+.input-status {
+    width: auto; 
+    padding: 6px 10px;
+}
+
+.input-rating {
+   width: auto;
+   padding: 6px 8px 6px 12px;
+}
+
+
+.input-textarea {
+    width: 100%;
+    padding: 8px 8px 20px 12px;
+}
+
+
+
+ .details-span {
+    display: block;
+    padding: 15px 0 4px;
+  }
+  
+  
+  .cancel {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+  /* ----- END CSS: FORM ----- */
