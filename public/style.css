@@ -44,11 +44,12 @@
 /* ----- END CSS: WEB PAGE GRID ----- */
   
 
+
+
+
 /* ----- START CSS: GENERAL WEBPAGE STYLING----- */
-
-
 html {
-   background-color: #23324A;
+   background-color: #23324A; 
 }
 
 .tracking-application-container {
@@ -63,11 +64,11 @@ html {
 
 
 .main-section {
-    background-color: #172439;
+    background-color: #172439; 
     /* height: 90vh; */
     border-radius: 1rem 0rem 1rem 1rem;
     border-color: #172439;
-    padding: 10px 25px 20px 50px;
+    padding: 10px 20px 20px 40px;
 }
 
 .side-section {
@@ -77,12 +78,69 @@ html {
 }
 
 
-
-
-
 h2 {
     color: #ffffff;
 }
+/* ----- END CSS: GENERAL WEBPAGE STYLING----- */
+
+
+/* ----- Start CSS: Styling for 'Your Show List' Section ----- */
+.card-text {
+  color: white;
+}
+
+li {
+  list-style: none;
+  padding: 1rem;
+  margin: 1rem 1rem 1rem 0;
+  /* width: 200px; */
+  background: #131726;
+
+  /* calculates the width of each item as a quarter (25%) of the container width minus the margins */
+  width: calc(25% - 1rem);  
+  box-sizing: border-box; 
+  justify-content: 
+}
+
+#showlist {
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  flex-wrap: wrap;  /* Added this line */
+  /* justify-content: space-between;  */
+}
+
+#showlist > li > p {
+  line-height: 1.4rem;
+}
+
+
+
+/* MEDIA QUERY: 'Your Show List' Section  */
+@media screen and (max-width: 1200px) {
+  li {
+    /* 3 items per row when the viewport width is 1200px or less */
+    width: calc(33.33% - 1rem);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  li {
+    /* 2 items per row when the viewport width is 900px or less */
+    width: calc(50% - 1rem);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  li {
+    /* 1 item per row when the viewport width is 600px or less */
+    width: calc(100% - 1rem);
+  }
+}
+
+
+/* ----- END CSS: Styling for 'Your Show List' Section ----- */
 
 
 
@@ -121,16 +179,17 @@ h2 {
  
 
   /* ----- START CSS: FORM ----- */
-  .form {
+  #pop-up-form {
     display: none;
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid #23324A;
+    border: 1.5px solid #4a6483;
     z-index: 1;
     background-color: white;
-    padding: 0.8rem 4rem 2rem ;
+    padding: 0.8rem 4rem 2rem 4rem;
+    margin:0 0;
     width: 100%;
     border-radius: 1rem;
     max-width: 40vw;
@@ -205,6 +264,11 @@ h2 {
     margin: 0;
   }
 
+.tv-show-details {
+  /* fixing the input text field extruding from the .pop-up-form's padding*/
+  padding-right: 1.5rem;
+}
+
 .input-text {
     width: 100%;
     padding: 6px 12px;
@@ -221,19 +285,15 @@ h2 {
    padding: 6px 8px 6px 12px;
 }
 
-
 .input-textarea {
     width: 100%;
     padding: 8px 8px 20px 12px;
 }
 
-
-
  .details-span {
     display: block;
     padding: 15px 0 4px;
   }
-  
   
   .cancel {
     background-color: red;
@@ -242,4 +302,15 @@ h2 {
     padding: 0.5rem 1rem;
     font-size: 1rem;
   }
+
+
+/* a blur background effect when pop-up-form is active */
+.blur-effect {
+  filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+}
+
+
+
   /* ----- END CSS: FORM ----- */
