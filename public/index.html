@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <title>Asian Show Trackers</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <title>Asian Show Trackers</title>
+
+  <!-- Icon Library from 'Font Awesome': https://fontawesome.com/ -->
+  <script src="https://kit.fontawesome.com/441fdb4bc4.js" crossorigin="anonymous"></script>
+
 </head>
 
 
 
 <body>
-    <header>
-        <nav class="navbar">
-            <img class="logo" src="img/logo.png" alt="Epiverse Logo">
-            <button id="addShowBtn" aria-label="Add New TV Show">+ Add New</button>
-        </nav>
+  <header>
+    <nav class="navbar">
+      <img class="logo" src="img/logo.png" alt="Epiverse Logo">
+      <button id="addShowBtn" aria-label="Add New TV Show">+ Add New</button>
+    </nav>
 
-        <!-- FORM POP UP
+    <!-- FORM POP UP
         <form id="formModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
@@ -27,102 +32,161 @@
         </form> -->
 
 
-       <!-- <h1>ASIAN SHOW TRACKER</h1> -->
+    <!-- <h1>ASIAN SHOW TRACKER</h1> -->
 
 
     <!-- FORM POP UP (after clicking "+ Add New" button ) -->
     <dialog class="pop-up-form" id="pop-up-form" aria-labelledby="form-title" aria-describedby="form-description">
-        <form class="form-container">
-          <h2 id="form-title">+ Add New</h2>
-          <p id="form-description"><i>Please fill in the details of the TV show you want to add.</i></p>
-          <!-- Add my form fields here -->
-          <div class="tv-show-details">
-            <label for="showTitle" class="input-box">
-                <span class="details-span"><strong>Title of the Show *</strong></span> <!-- Use of astric (*) for inputs that are compulsory to fill-->
-                <input class="input-text" type="text" name="showTitle" id="show-title" placeholder='The TV show title' required="true">
-            </label>
-            <label for="showCountry" class="input-box">
-                <span class="details-span"><strong>Country Origin of the Show *</strong></span> <!-- The most immportant inputs (with *) are first in the form-->
-                <input class="input-text" type="text" name="showCountry" id="show-country" placeholder="e.g. Japan" required>
-            </label>
-            <label for="showStatus" class="input-box">
-                <span class="details-span"><strong>Your Watch Status *</strong></span> <!-- Label name is kept short for all inputs-->
-                <select class="input-status" name="showStatus" id="show-status" data-form-required>
-                  <option disabled label="Select an option" selected value=""></option>
-                  <option label="Not started" value="Not started">Not started</option>
-                  <option label="On paused" value="On paused">On paused</option>
-                  <option label="Currently watching" value="Currently watching">Currently watching</option>
-                  <option label="Completed" value="Completed">Completed</option>
-                </select>
-            </label>
-            <label for="showRating" class="input-box">
-                <span class="details-span"><strong>Your Rating</strong></span>
-                <input class="input-rating" type="number" name="showRating" id="show-rating" placeholder="e.g. 4.5" min="0" max="5" value="4.5" step="0.1" required>
-            </label>
-            <label for="showComment" class="input-box">
-                <span class="details-span"><strong>Your Comment</strong></span> <!-- Form is in 2 column when the inputs fields relates to each other-->
-                <!-- <input type="text" placeholder="Leave yourself a note about this TV show..."> -->
-                <textarea class="input-textarea" name="showComment" id="show-comment" placeholder='Leave yourself a note about this TV show...' maxlength='1000'></textarea>
-            </label>
+      <form class="form-container">
+        <h2 id="form-title">+ Add New</h2>
+        <p id="form-description"><i>Please fill in the details of the TV show you want to add.</i></p>
+        <!-- Add my form fields here -->
+        <div class="tv-show-details">
+          <label for="showTitle" class="input-box">
+            <span class="details-span"><strong>Title of the Show *</strong></span>
+            <!-- Use of astric (*) for inputs that are compulsory to fill-->
+            <input class="input-text" type="text" name="showTitle" id="show-title" placeholder='The TV show title'
+              required="true">
+          </label>
+          <label for="showCountry" class="input-box">
+            <span class="details-span"><strong>Country Origin of the Show *</strong></span>
+            <!-- The most immportant inputs (with *) are first in the form-->
+            <input class="input-text" type="text" name="showCountry" id="show-country" placeholder="e.g. Japan"
+              required>
+          </label>
+          <label for="showStatus" class="input-box">
+            <span class="details-span"><strong>Your Watch Status *</strong></span>
+            <!-- Label name is kept short for all inputs-->
+            <select class="input-status" name="showStatus" id="show-status" data-form-required>
+              <option disabled label="Select an option" selected value=""></option>
+              <option label="Not started" value="Not started">Not started</option>
+              <option label="On paused" value="On paused">On paused</option>
+              <option label="Currently watching" value="Currently watching">Currently watching</option>
+              <option label="Completed" value="Completed">Completed</option>
+            </select>
+          </label>
+          <label for="showRating" class="input-box">
+            <span class="details-span"><strong>Your Rating</strong></span>
+            <input class="input-rating" type="number" name="showRating" id="show-rating" placeholder="4.5" min="0"
+              max="5" step="0.1">
+          </label>
+          <label for="showComment" class="input-box">
+            <span class="details-span"><strong>Your Comment</strong></span>
+            <!-- Form is in 2 column when the inputs fields relates to each other-->
+            <!-- <input type="text" placeholder="Leave yourself a note about this TV show..."> -->
+            <textarea class="input-textarea" name="showComment" id="show-comment"
+              placeholder='Leave yourself a note about this TV show...' maxlength='1000'></textarea>
+          </label>
         </div>
 
 
-          <!-- Form Submission -->
-          <div id="form-button-container">
-           <!-- Form Clearing-->
-           <!-- <button type="button" class="form-button" onclick="reset()">Clear</button> -->
-           
+        <!-- Form Submission -->
+        <div id="form-button-container">
+          <!-- Form Clearing-->
+          <!-- <button type="button" class="form-button" onclick="reset()">Clear</button> -->
+
           <!-- Form Cancellation-->
           <button type="button" id="cancel-form-button" onclick="closeForm(),reset()">Cancel</button>
 
-            <!-- <button type="submit">Save</button> -->
-            <button type="submit" id="save-form-button" onclick="alert('Show Added')" value="Save">Save</button>
+          <!-- <button type="submit">Save</button> -->
+          <button type="submit" id="save-form-button" onclick="alert('Show Added')" value="Save">Save</button>
         </div>
 
-        </form>
+      </form>
     </dialog>
-</header>
+  </header>
 
 
-    <main class="tracking-application-container" id="blur">
+  <main class="tracking-application-container" id="blur">
 
-        <section class="side-section">
-          <!-- BLOCK 1: YOUR STATS -->
-          <article id="your-stats">
-            <h2>Your Stats</h2>
-            <div id="myPlot" style="width:100%; height:250px"></div>
-          </article>
-
-          <!-- BLOCK 2: NEW EPISODES -->
-          <article id="new-episodes">
-            <h2>New Episodes</h2>
-          </article>
-        </section>
-
-
-        <section class="main-section">
-          <!-- BLOCK 3: YOUR FAV MOMENTS -->
-          <article id="your-favourite-moments">
-            <h2>Your Favourite Moments</h2>
-          </article>
-
-          <!-- BLOCK 4: YOUR SHOW LIST -->
-          <!-- ***NOTE: this is the section that will be adding new show after user 'save' the form -->
-          <article id="your-show-list">
-            <h2>Your Show List</h2>
+    <section class="main-section">
+      <!-- BLOCK 3: YOUR FAV MOMENTS -->
+      <article id="your-favourite-moments">
+        <!-- Aside -->
+        <aside class="aside">
+          <!-- Internal aside container for sticky positioning -->
+          <div class="aside-container">
+            <h2>Your Collections</h2>
+            <ul>
+              <!-- This should remain empty - our content will be dynamically loaded from local storage -->
+            </ul>
             <ul id="showlist"></ul>
-            <!-- ^ this <ul> tag will be holding the place for the shows when user eventually add them -->
-            <!-- 
-              ^ we might need to change the 'unorder-list' to something else,
-                like <div> to create for structure and changing the layout.
-                The unorder-list used here is for simplicity -->
-          </article>
-        </section>
+            <button id="clearBtn">Clear Collections</button>
+          </div>
+        </aside>
+        </div>
 
-    </main>
 
-    <script src="script.js"></script>
+        <ul id="showlist"></ul>
+        <!-- ^ this <ul> tag will be holding the place for the shows when user eventually add them -->
+        <!-- 
+            ^ we might need to change the 'unorder-list' to something else,
+              like <div> to create for structure and changing the layout.
+              The unorder-list used here is for simplicity -->
+
+      </article>
+
+
+      <!-- BLOCK 4: YOUR SHOW LIST -->
+      <!-- ***NOTE: this is the section that will be adding new show after user 'save' the form -->
+      <article id="your-show-list">
+        <h2>Your Show List</h2>
+
+        <div class="listAPI">
+          <!-- SEARCH BOX -->
+          <form action="" class="searchBox">
+            <div class="searchContainer">
+              <input type="text" class="searchInput" placeholder="Search..." />
+              <i class="fas fa-search searchIcon"></i>
+            </div>
+          </form>
+
+          <div class="container asianShows-container">
+            <div class="asianShows"></div>
+          </div>
+
+
+      </article>
+    </section>
+
+
+    <section class="side-section">
+      <!-- BLOCK 1: YOUR STATS -->
+      <article id="your-stats">
+        <h2>Your Stats</h2>
+
+        <!-- Modal structure -->
+        <button id="show-dialog">Open Graph</button>
+
+        <dialog id="myDialog">
+          <div id="dialog-content"></div>
+          <button id="close-dialog">Close</button>
+        </dialog>
+
+        <!-- Plot Div -->
+        <div class="plot-container">
+          <div id="myPlot" style="width:100%; height:250px"></div>
+        </div>
+
+      </article>
+
+      <!-- BLOCK 2: NEW EPISODES -->
+      <article id="new-episodes">
+        <h2>New Episodes</h2>
+      </article>
+    </section>
+
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
+
+<footer>
+  <!-- Referencing my API Source Link -->
+  <!-- <p>Made using the <a href="https://restcountries.com">Countries API</a>.</p> -->
+</footer>
+
 
 
 </html>
