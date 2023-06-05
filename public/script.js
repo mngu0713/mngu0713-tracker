@@ -181,10 +181,10 @@ let plotData = [
     x: monthNames, 
     y: [200, 381, 230, 604, 613], 
     name: 'Korean Drama',
-    text: 'Korean Drama',
     line: { 
       color: 'Violet' 
-    } 
+    },
+    hovertemplate: 'Korean Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
   { //Japanese Drama Category
     x: monthNames, 
@@ -192,8 +192,9 @@ let plotData = [
     name: 'Japanese Drama',
     text: 'Japanese Drama',
     line: { 
-      color: 'OrangeRed' 
-    }
+      color: 'Coral' 
+    },
+    hovertemplate: 'Japanese Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
   {  //Chinese Drama Category
     x: monthNames, 
@@ -202,7 +203,8 @@ let plotData = [
     text: 'Chinese Drama',
     line: { 
       color: 'Orange' 
-    }
+    },
+    hovertemplate: 'Chinese Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
   { //Taiwanese Drama Category
     x: monthNames, 
@@ -211,24 +213,41 @@ let plotData = [
     text: 'Taiwanese Drama',
     line: { 
       color: 'MediumTurquoise' 
-    }
+    },
+    hovertemplate: 'Taiwanese Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
 ];
 
 // Styling my Plot:
 let layout = {
-  title: "TV Show Stats",
+  title:{
+    text: "Monthly Watch Time",
+    font: {
+      size: 14,
+      color: 'white'
+    },
+  },
   font: {
-    size: 8,
+    size: 9,
     color: 'white',
   },
   xaxis: {
-    title: "Months",
-    color: 'white',
+    title: {
+      text: "Months",
+      font: {
+        size: 10,
+        color: 'white',
+      },
+    },
   },
   yaxis: {
-    title: "Watch Time (minutes)",
-    color: 'white',
+    title: {
+      text: "Watch Time (minutes)",
+      font: {
+        size: 10,
+        color: 'white',
+      },
+    },
   },
   showlegend: false, // Hide the legend initially
   legend: {
@@ -248,11 +267,9 @@ let layout = {
     font: { 
       family: 'Arial', 
       size: 12,
-      color: 'white',
     },
     namelength: 0, // Set the name length to 0 to hide the trace name
-    template: "$<text> <br>$<y> minutes | $<x>", // Define the hover template
-    template: "<span style='color: $<line.color>'>$<text></span><br>$<y> minutes | $<x>", // customise the hover template
+    //template: "<span style='color: $<line.color>'>$<text></span><br>$<y>minutes | $<x>", // the hover text
   },
   plot_bgcolor: '#14253B', // background color of the plot area
   paper_bgcolor: '#14253B', // background color of the paper area
@@ -284,10 +301,13 @@ showDialogButton.addEventListener('click', function () {
   dialog.showModal();
   Plotly.newPlot(dialogContent, plotData, layout, config);
 
+  // !!!!! NEED FIX !!!!! : the blur background element is currently not working properly for this Plot Dialog pop-up. When uncomment, the blur background does appear like the Form Dialog pop up, BUT the expanded Plot's 'close button' no longer function.
+  //blurElement.classList.add("blur-effect"); // <, the blur background when graph expanded
+
   // Adjust the width and height of the dialog content
-  dialogContent.style.width = "600px";
-  dialogContent.style.height = "600px";
-  dialogContent.style.margin = "20px";
+  dialogContent.style.width = "70vw";
+  dialogContent.style.height = "70vh";
+  dialogContent.style.margin = "1vw";
 
   // Update the layout for the expanded graph
   let expandedLayout = {
@@ -306,6 +326,8 @@ showDialogButton.addEventListener('click', function () {
 closeDialogButton.addEventListener('click', function () {
   dialog.close();
   Plotly.purge(dialogContent);
+  // !!!!! NEED FIX !!!!! : Plot Dialog's blur background - part 2
+  //blurElement.classList.remove("blur-effect"); // close the blurred background when expanded graph closed.
 });
 
 // Update the layout dynamically based on dialog expansion

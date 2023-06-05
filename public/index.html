@@ -98,7 +98,39 @@
 
 
   <main class="tracking-application-container" id="blur">
+    
+    <!-- LEFT SECTION -->
+    <section class="side-section">
+      <!-- BLOCK 1: YOUR STATS -->
+      <article id="your-stats">
+        <h2>Your Stats</h2>
 
+        <!-- Plot Div -->
+        <div class="plot-container">
+          <div id="myPlot" style="width:100%; height:250px"></div>
+        </div>
+
+        <!-- Modal structure - Open & Close Graph Buttons -->
+        <!-- !!!!! NEED FIX !!!!!: Currently, sometime the expanded Plot works fine, but sometime the expanded Plot 
+          get squished together after a page refresh, which will need some resizing of screensize to prompt the graph to look like usual.-->
+        <button class="plot-button" id="show-dialog">Open</button>
+
+        <dialog id="myDialog">
+          <div id="dialog-content"></div>
+          <button class="plot-button" id="close-dialog" onclick="closeDialog()">Close</button>
+        </dialog>
+
+      </article>
+
+      <!-- BLOCK 2: NEW EPISODES -->
+      <article id="new-episodes">
+        <h2>New Episodes</h2>
+      </article>
+    </section>
+
+
+
+    <!-- LEFT SECTION -->
     <section class="main-section">
       <!-- BLOCK 3: YOUR FAV MOMENTS -->
       <article id="your-favourite-moments">
@@ -146,33 +178,6 @@
           </div>
 
 
-      </article>
-    </section>
-
-
-    <section class="side-section">
-      <!-- BLOCK 1: YOUR STATS -->
-      <article id="your-stats">
-        <h2>Your Stats</h2>
-
-        <!-- Modal structure -->
-        <button id="show-dialog">Open Graph</button>
-
-        <dialog id="myDialog">
-          <div id="dialog-content"></div>
-          <button id="close-dialog">Close</button>
-        </dialog>
-
-        <!-- Plot Div -->
-        <div class="plot-container">
-          <div id="myPlot" style="width:100%; height:250px"></div>
-        </div>
-
-      </article>
-
-      <!-- BLOCK 2: NEW EPISODES -->
-      <article id="new-episodes">
-        <h2>New Episodes</h2>
       </article>
     </section>
 
