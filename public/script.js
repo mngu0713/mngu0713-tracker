@@ -60,7 +60,7 @@ const form = document.querySelector('#pop-up-form .form-container');
 const showlist = document.querySelector('#showlist');
 
 // listening out for the form submission when use press the 'save' button
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', function (event) {
 
   event.preventDefault();
   // ^ blocking the default submission behaviour
@@ -80,8 +80,8 @@ function displayShow(show) {
   // define a variable to house the element
   let item = document.createElement('li');
   item.setAttribute('data-id', show.id);
-  item.innerHTML = 
-  `<p class="card-text"> <strong>${show.title}</strong> <br/>
+  item.innerHTML =
+    `<p class="card-text"> <strong>${show.title}</strong> <br/>
        <strong>Country:</strong> ${show.country} <br/>
        <strong>Genre:</strong> <br/>
        <i>${show.status} ⭐️ ${show.rating}</i> </p>`;
@@ -95,19 +95,16 @@ function displayShow(show) {
   item.appendChild(delButton);
 
   //Code the event when the delete button get clicked:
-  delButton.addEventListener('click', function(event){
+  delButton.addEventListener('click', function (event) {
     item.remove();
-    showList.forEach(function(showArrayElement, showArrayIndex){
+    showList.forEach(function (showArrayElement, showArrayIndex) {
       if (showArrayElement.id == item.getAttribute('data-id')) {
         showList.splice(showArrayIndex, 1)
-        
+
       }
       console.log(showList);
     })
   })
-  
-
-
 }
 
 
@@ -139,17 +136,17 @@ function addShow(title, country, status, rating, comment) {
 // Log the array to the console.
 console.log(showList);
 
-window.onload = function() {
+window.onload = function () {
   // Load showList from localStorage
   let storedShowList = localStorage.getItem('showList');
-  if(storedShowList) {
+  if (storedShowList) {
     showList = JSON.parse(storedShowList);
     // Display all the shows in the loaded showList
     showList.forEach((show) => {
       displayShow(show);
     });
   }
-  
+
 };
 
 
@@ -172,41 +169,41 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 // Data for each category
 let plotData = [
   {  //Korean Drama Category
-    x: monthNames, 
-    y: [200, 381, 230, 604, 613], 
+    x: monthNames,
+    y: [200, 381, 230, 604, 613],
     name: 'Korean Drama',
-    line: { 
-      color: 'Violet' 
+    line: {
+      color: 'Violet'
     },
     hovertemplate: 'Korean Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
   { //Japanese Drama Category
-    x: monthNames, 
-    y: [604, 313, 403, 191, 103], 
+    x: monthNames,
+    y: [604, 313, 403, 191, 103],
     name: 'Japanese Drama',
     text: 'Japanese Drama',
-    line: { 
-      color: 'Coral' 
+    line: {
+      color: 'Coral'
     },
     hovertemplate: 'Japanese Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
   {  //Chinese Drama Category
-    x: monthNames, 
-    y: [61, 65, 90, 12, 185], 
+    x: monthNames,
+    y: [61, 65, 90, 12, 185],
     name: 'Chinese Drama',
     text: 'Chinese Drama',
-    line: { 
-      color: 'Orange' 
+    line: {
+      color: 'Orange'
     },
     hovertemplate: 'Chinese Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
   { //Taiwanese Drama Category
-    x: monthNames, 
-    y: [112, 101, 90, 170, 135], 
+    x: monthNames,
+    y: [112, 101, 90, 170, 135],
     name: 'Taiwanese Drama',
     text: 'Taiwanese Drama',
-    line: { 
-      color: 'MediumTurquoise' 
+    line: {
+      color: 'MediumTurquoise'
     },
     hovertemplate: 'Taiwanese Drama<br>%{y} minutes | %{x} 2023<extra></extra>'
   },
@@ -214,7 +211,7 @@ let plotData = [
 
 // Styling my Plot:
 let layout = {
-  title:{
+  title: {
     text: "Monthly Watch Time",
     font: {
       size: 14,
@@ -255,11 +252,11 @@ let layout = {
     t: 60, // < top padding
     b: 60, // < bottom padding
   },
-  hovermode: 'closest', 
+  hovermode: 'closest',
   hoverlabel: {
     bordercolor: 'black',
-    font: { 
-      family: 'Arial', 
+    font: {
+      family: 'Arial',
       size: 12,
     },
     namelength: 0, // Set the name length to 0 to hide the trace name
@@ -399,15 +396,15 @@ function filterAsianTVShows(asianShows) {
 // --- Display Asian TV Shows
 function displayAsianShows(asianShows) {
   asianShowsDiv.innerHTML = "";
-  
-    //a conditional check for a "message" when search is NOT found (or empty):
-    if (asianShows.length === 0) { // <-- If indeed empty
-      const message = document.createElement("p"); // <-- create a message element
-      message.textContent = "No search results found."; // <-- "text message" displayed on user' screen
-      message.classList.add("no-results-message"); // <-- class name for message element
-      asianShowsDiv.appendChild(message); //<-- append message element to 'asianShowDiv'
-      return;
-    }
+
+  //a conditional check for a "message" when search is NOT found (or empty):
+  if (asianShows.length === 0) { // <-- If indeed empty
+    const message = document.createElement("p"); // <-- create a message element
+    message.textContent = "No search results found."; // <-- "text message" displayed on user' screen
+    message.classList.add("no-results-message"); // <-- class name for message element
+    asianShowsDiv.appendChild(message); //<-- append message element to 'asianShowDiv'
+    return;
+  }
 
 
   // populate contents for each TV Show cards:
@@ -417,8 +414,8 @@ function displayAsianShows(asianShows) {
 
     //a conditional check to handle cases where the cover image is NOT found:
     const imageUrl = asianShow.poster_path
-    ? imgBaseUrl + imgSize + asianShow.poster_path
-    : "https://cringemdb.com/img/movie-poster-placeholder.png"; // <--My fallback image URL when the TMDb poster doesn't load
+      ? imgBaseUrl + imgSize + asianShow.poster_path
+      : "https://cringemdb.com/img/movie-poster-placeholder.png"; // <--My fallback image URL when the TMDb poster doesn't load
 
     //overwriting the HTML:
     div.innerHTML = `
@@ -442,85 +439,85 @@ function displayAsianShows(asianShows) {
 
 
 
-// --- EVENT LISTENER FOR BOOKMARK BUTTON (local storage)
+  // --- EVENT LISTENER FOR BOOKMARK BUTTON (local storage)
   //Referencing Unit Coordinator Rob Dongas's Scrimba code tutorial in week 10 DECO2017:https://scrimba.com/scrim/c7L6ZGC8
   //I modified Wk10 Scrimba's steps about Local Storage to save TV Shows.
   // ---The event in which user click the bookmark icon on TV show card to their favourites list in local storage
-asianShowsDiv.addEventListener("click", (e) => {
-  if (e.target.classList.contains("fa-bookmark")) {
-    const selectedShow = e.target.closest(".asianShow");
-    const showName = selectedShow.querySelector(".title").textContent;
+  asianShowsDiv.addEventListener("click", (e) => {
+    if (e.target.classList.contains("fa-bookmark")) {
+      const selectedShow = e.target.closest(".asianShow");
+      const showName = selectedShow.querySelector(".title").textContent;
 
-    // Retrieve the existing Collection list from user's local storage
-    // let collection = localStorage.getItem("collection");
-    // collection = collection ? JSON.parse(collection) : [];
+      // Retrieve the existing Collection list from user's local storage
+      // let collection = localStorage.getItem("collection");
+      // collection = collection ? JSON.parse(collection) : [];
+      let collection = JSON.parse(localStorage.getItem('collection'));
+
+      if (collection === null) {
+        // Initialize an empty array if the collection is null
+        collection = [];
+      }
+      console.log(collection);
+
+
+      // Check if the selected show is already in the Collection
+      const isNewlyAdded = collection.some((show) => show.name === showName);
+
+      if (!isNewlyAdded) {
+        // Add the selected show to the favorites list:
+        collection.push({ name: showName });
+        // Update the favorites list in local storage:
+        localStorage.setItem("collection", JSON.stringify(collection));
+        // Display a success message:
+        console.log(`${showName} added to your Collection!`);
+
+        // Add the new class to the title of the show
+        selectedShow.querySelector(".title").classList.add("newlyAddedShow");
+
+
+      } else {
+        // Display a message 
+        console.log(`${showName} already exist in your Collection.`);
+      }
+    }
+    updateCollection()
+  });
+
+
+  // Declare updateCollection function globally
+  function updateCollection() {
+    let list = document.querySelector('aside ul');
+    list.innerHTML = "";
+
     let collection = JSON.parse(localStorage.getItem('collection'));
 
-    if (collection === null) {
-      // Initialize an empty array if the collection is null
-      collection = [];
-    }
-    console.log(collection);
-    
+    if (collection !== null) {
+      collection.forEach((eachShowInCollection) => {
+        let listItem = document.createElement('li');
 
-    // Check if the selected show is already in the Collection
-    const isNewlyAdded = collection.some((show) => show.name === showName);
+        //Update the forEach loop in the updateCollection function to handle both string and object values correctly:
+        //this piece of code were trouble shoot by chatgpt, as the tv show name only displayed as `[object Object]` previously.
+        if (typeof eachShowInCollection === "object") {
+          listItem.textContent = eachShowInCollection.name;
+        } else {
+          listItem.textContent = eachShowInCollection;
+        }
 
-    if (!isNewlyAdded) {
-      // Add the selected show to the favorites list:
-      collection.push({ name: showName });
-      // Update the favorites list in local storage:
-      localStorage.setItem("collection", JSON.stringify(collection));
-      // Display a success message:
-      console.log(`${showName} added to your Collection!`);
-      
-      // Add the new class to the title of the show
-      selectedShow.querySelector(".title").classList.add("newlyAddedShow");
-
-      
-    } else {
-      // Display a message 
-      console.log(`${showName} already exist in your Collection.`);
+        list.appendChild(listItem)
+      });
     }
   }
-  updateCollection()
-});
 
 
-// Declare updateCollection function globally
-function updateCollection() {
-  let list = document.querySelector('aside ul');
-  list.innerHTML = "";
+  // WHEN THE COLLECTION LIST GOT CLEARED
+  let clearButton = document.getElementById('clearBtn');
+  clearButton.addEventListener("click", (event) => {
+    // Clear the Local Storage
+    localStorage.removeItem('collection');
 
-  let collection = JSON.parse(localStorage.getItem('collection'));
-
-  if (collection !== null) {
-    collection.forEach((eachShowInCollection) => {
-      let listItem = document.createElement('li');
-      
-      //Update the forEach loop in the updateCollection function to handle both string and object values correctly:
-        //this piece of code were trouble shoot by chatgpt, as the tv show name only displayed as `[object Object]` previously.
-      if (typeof eachShowInCollection === "object") {
-        listItem.textContent = eachShowInCollection.name;
-      } else {
-        listItem.textContent = eachShowInCollection;
-      }
-
-      list.appendChild(listItem)
-    });
-  } 
+    updateCollection();
+  })
 }
-
-
-// WHEN THE COLLECTION LIST GOT CLEARED
-let clearButton = document.getElementById('clearBtn');
-clearButton.addEventListener("click", (event) => {
-  // Clear the Local Storage
-  localStorage.removeItem('collection');
-  
-  updateCollection();
-})
-} 
 
 
 //--- EVENT LISTENER FOR SEARCH BOX
@@ -530,10 +527,10 @@ searchBox.addEventListener("submit", (e) => {
 
   asianShowsDiv.innerHTML = "";
   const InputVal = input.value;
-  if(InputVal) {
-    const searchURL = searchAPI + InputVal; 
+  if (InputVal) {
+    const searchURL = searchAPI + InputVal;
     getAsianShows(searchURL);
-    input.value="";
+    input.value = "";
   }
 });
 

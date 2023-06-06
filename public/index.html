@@ -8,10 +8,8 @@
   <link href="style.css" rel="stylesheet">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <title>Asian Show Trackers</title>
-
   <!-- Icon Library from 'Font Awesome': https://fontawesome.com/ -->
   <script src="https://kit.fontawesome.com/441fdb4bc4.js" crossorigin="anonymous"></script>
-
 </head>
 
 
@@ -23,18 +21,7 @@
       <button id="addShowBtn" aria-label="Add New TV Show">+ Add New</button>
     </nav>
 
-    <!-- FORM POP UP
-        <form id="formModal" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              Add myform inputs here 
-            </div>
-        </form> -->
-
-
     <!-- <h1>ASIAN SHOW TRACKER</h1> -->
-
-
     <!-- FORM POP UP (after clicking "+ Add New" button ) -->
     <dialog class="pop-up-form" id="pop-up-form" aria-labelledby="form-title" aria-describedby="form-description">
       <form class="form-container">
@@ -59,7 +46,6 @@
               <option label="Taiwanese Drama" value="Taiwanese Drama">Taiwanese Drama</option>
               <option label="Hong Kong Drama" value="Hong Kong Drama">Taiwanese Drama</option>
               <option label="Vietnamese Drama" value="Vietnamese Drama">Taiwanese Drama</option>
-
               <option label="Thailand Drama" value="Thailand Drama">Thailand Drama</option>
               <option label="Indian Drama" value="Indian Drama">Indian Drama</option>
               <option label="Philippines Drama" value="Philippines Drama">Philippines Drama</option>
@@ -87,12 +73,8 @@
 
         <!-- Form Submission -->
         <div id="form-button-container">
-          <!-- Form Clearing-->
-          <!-- <button type="button" class="form-button" onclick="reset()">Clear</button> -->
-
           <!-- Form Cancellation-->
           <button type="button" id="cancel-form-button" onclick="closeForm(),reset()">Cancel</button>
-
           <!-- <button type="submit">Save</button> -->
           <button type="submit" id="save-form-button" onclick="alert('Show Added')" value="Save">Save</button>
         </div>
@@ -103,7 +85,6 @@
 
 
   <main class="tracking-application-container" id="blur">
-    
     <!-- LEFT SECTION -->
     <section class="side-section">
       <!-- BLOCK 1: YOUR STATS -->
@@ -116,7 +97,7 @@
         </div>
 
         <!-- Modal structure - Open & Close Graph Buttons -->
-        <!-- !!!!! NEED FIX !!!!!: Currently, sometime the expanded Plot works fine, but sometime the expanded Plot 
+        <!-- !!! NEED FIX !!!: Currently, sometime the expanded Plot works fine, but sometime the expanded Plot 
           get squished together after a page refresh, which will need some resizing of screensize to prompt the graph to look like usual.-->
         <button class="plot-button" id="show-dialog">Open</button>
 
@@ -124,29 +105,22 @@
           <div id="dialog-content"></div>
           <button class="plot-button" id="close-dialog" onclick="closeDialog()">Close</button>
         </dialog>
-
       </article>
 
       <!-- BLOCK 2: NEW EPISODES -->
       <article id="saved-collection">
         <h2>Saved Collection</h2>
-
         <aside class="aside">
           <!-- Internal aside container for sticky positioning -->
           <div class="aside-container">
             <ul>
               <!-- This should remain empty - our content will be dynamically loaded from local storage -->
             </ul>
-          
           </div>
-
-            <button id="clearBtn">Clear Collections</button>
+          <button id="clearBtn">Clear Collections</button>
         </aside>
-
       </article>
     </section>
-
-
 
     <!-- LEFT SECTION -->
     <section class="main-section">
@@ -155,54 +129,31 @@
         <h2>Your Review</h2>
         <ul id="showlist"></ul>
         <!-- Aside -->
-        
-
-
-
-        <!-- <ul id="showlist"></ul> -->
-        <!-- ^ this <ul> tag will be holding the place for the shows when user eventually add them -->
-        <!-- 
-            ^ we might need to change the 'unorder-list' to something else,
-              like <div> to create for structure and changing the layout.
-              The unorder-list used here is for simplicity -->
-
       </article>
-
 
       <!-- BLOCK 4: YOUR SHOW LIST -->
       <!-- ***NOTE: this is the section that will be adding new show after user 'save' the form -->
       <article id="your-show-list">
         <h2>Your Show List</h2>
-
         <!-- <div class="listAPI"> -->
-          <!-- SEARCH BOX -->
-          <form action="" class="searchBox">
-            <div class="searchContainer">
-              <input type="text" class="searchInput" placeholder="Search..." />
-              <i class="fas fa-search searchIcon"></i>
-            </div>
-          </form>
-
-          <div class="container asianShows-container">
-            <div class="asianShows"></div>
+        <!-- SEARCH BOX -->
+        <form action="" class="searchBox">
+          <div class="searchContainer">
+            <input type="text" class="searchInput" placeholder="Search..." />
+            <i class="fas fa-search searchIcon"></i>
           </div>
-          //</div>
+        </form>
 
+        <div class="container asianShows-container">
+          <div class="asianShows"></div>
+        </div>
 
       </article>
     </section>
-
 
   </main>
 
   <script src="script.js"></script>
 </body>
-
-<footer>
-  <!-- Referencing my API Source Link -->
-  <!-- <p>Made using the <a href="https://restcountries.com">Countries API</a>.</p> -->
-</footer>
-
-
 
 </html>

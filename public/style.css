@@ -176,18 +176,17 @@ li {
 /* MEDIA QUERY: 'Your Show List' Section  */
 @media screen and (max-width: 1250px) {
   li {
-    
-    width: calc(33.33% - 0.8rem); /* 3 items per row when the viewport width is 1250px or less */
+
+    width: calc(33.33% - 0.8rem);
+    /* 3 items per row when the viewport width is 1250px or less */
   }
 }
-
 @media screen and (max-width: 1000px) {
   li {
     /* 2 items per row when the viewport width is 1000px or less */
     width: calc(50% - 0.8rem);
   }
 }
-
 @media screen and (max-width: 600px) {
   li {
     /* 1 item per row when the viewport width is 700px or less */
@@ -197,8 +196,6 @@ li {
 
 
 /* ----- END CSS: Styling for 'Your Show List' Section ----- */
-
-
 
 
 
@@ -256,7 +253,6 @@ li {
   top: 50%;
   transform: translateY(-50%);
 }
-
 /* ----- END CSS: SEARCH BOX ----- */
 
 
@@ -392,7 +388,7 @@ li {
 }
 
 .dropdown-category {
-  width: auto; 
+  width: auto;
   padding: 6px 10px;
 }
 
@@ -453,7 +449,7 @@ li {
   padding: 2rem 0;
   height: 100vh;
 
-  display:block;
+  display: block;
   align-content: stretch;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -478,7 +474,7 @@ li {
 .asianShows {
   width: 100%;
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -614,10 +610,6 @@ li {
 }
 
 
-
-
-
-
 /* --- CSS START: Your Collection --- */
 
 .collection-local-storage {
@@ -663,12 +655,6 @@ clearBtn:focus {
   outline: 0;
 }
 
-
-/* Styling the card of the show that got bookmarked */
-/* .newlyAddedShow {
-  color: #fbfbfb; 
-  font-family: Arial; 
-} */
 /* --- CSS END: Your Collection --- */
 
 
@@ -678,9 +664,11 @@ clearBtn:focus {
 .plot-container {
   padding-bottom: 10px;
 }
+
 #myDialog {
   z-index: 1000;
 }
+
 .plot-button {
   padding: 8px 14px;
   font-size: 14px;
@@ -692,6 +680,7 @@ clearBtn:focus {
   cursor: pointer;
   transition: background-color 0.1s;
 }
+
 .plot-button:hover {
   background-color: #aeaeae;
 }
@@ -709,4 +698,4 @@ clearBtn:focus {
   border: none;
   padding: 10px;
 } */
-/* --- CSS END: Your Collection --- */ 
+/* --- CSS END: Your Collection --- */

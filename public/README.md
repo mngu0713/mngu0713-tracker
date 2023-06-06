@@ -291,6 +291,6 @@ Dongas R. (2023). *Univeristy of Sydney: Week 4 DECO2017 Tutorial*. Scrimba. Ret
 
 Rana, M. (n.d.). *Movie app list searching api project using javascript* [Video]. YouTube. Retrieved from https://www.youtube.com/watch?v=8q5T1rFtRoE
 
-The Movie Database. (n.d.). *API Settings*. Retrieved from https://www.themoviedb.org/settings/api
+The Movie Database. (n.d.). *API Source for TV Shows Data*. Retrieved from https://www.themoviedb.org/settings/api
 
 Dongas R. (2023). *Univeristy of Sydney: Week 10 DECO2017 Tutorial*. Scrimba. Retrieved from https://scrimba.com/scrim/c7L6ZGC8
