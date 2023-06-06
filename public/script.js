@@ -1,4 +1,4 @@
-// -----  START JS: FETCH DATA FROM API ----- //
+// -----  START JS: FETCH DATA FROM API -----
 // Code are referenced from Wk5 DECO2017 (University of Sydney) tutorial content
 
 // 1. Store the element with the class 'content' as a variable for later use
@@ -9,44 +9,38 @@ const url = "https://api.themoviedb.org/3/movie/550?api_key=6f0b2683b85ef3e1a6c8
 
 // 3. Fetch data from API
 fetch(url)
-.then((response) => {
-  // check if response is successful
-  if (response.ok) {
-    // convert response to JSON and return the data
-    return response.json();
-  } else {
-    // throw an error if response is not successful
-    throw new Error(`Unable to access API. Error: ${response.status}`);
-  }
-})
-.then((data) => {
-  // Add code to do something with the data once it has been fetched and converted
-  console.log(data);
-})
-.catch((error) => {
-  // Handle error if API request is not successful
-  let errorMessage = document.createElement("p");
-  errorMessage.textContent = `Sorry, something went wrong - ${error.message}`;
-  content.append(errorMessage);
-});
+  .then((response) => {
+    // check if response is successful
+    if (response.ok) {
+      // convert response to JSON and return the data
+      return response.json();
+    } else {
+      // throw an error if response is not successful
+      throw new Error(`Unable to access API. Error: ${response.status}`);
+    }
+  })
+  .then((data) => {
+    // Add code to do something with the data once it has been fetched and converted
+    console.log(data);
+  })
+  .catch((error) => {
+    // Handle error if API request is not successful
+    let errorMessage = document.createElement("p");
+    errorMessage.textContent = `Sorry, something went wrong - ${error.message}`;
+    content.append(errorMessage);
+  });
 
+// -----  END JS: FETCH DATA FROM API -----
 
-
-// -----  END JS: FETCH DATA FROM API ----- //
-
-
-
-
-
-// -----  START JS: MAKING THE '+ADD NEW' FORM POPPING UP ----- //
+// -----  START JS: MAKING THE '+ADD NEW' FORM POPPING UP -----
 document.getElementById("addShowBtn").addEventListener('click', openForm);
 
-//make my blurred background element:
-const blurElement = document.getElementById("blur"); 
+// make my blurred background element:
+const blurElement = document.getElementById("blur");
 
 function openForm() {
   document.getElementById("pop-up-form").style.display = "block";
-  blurElement.classList.add("blur-effect"); 
+  blurElement.classList.add("blur-effect");
   /* ^ add a blur background when pop-up-form is active */
 }
 
@@ -56,7 +50,7 @@ function closeForm() {
   /* ^ remove the blur background when pop-up-form is closed */
 }
 
-// -----  END JS: MAKING THE '+ADD NEW' FORM POPPING UP ----- //
+// -----  END JS: MAKING THE '+ADD NEW' FORM POPPING UP -----
 
 
 
@@ -75,8 +69,7 @@ form.addEventListener('submit', function(event){
 
   addShow(
     form.elements.showTitle.value,
-    form.elements.showCountry.value,
-    form.elements.showStatus.value,
+    form.elements.showCategory.value,
     form.elements.showRating.value,
     form.elements.showComment.value
   );
@@ -107,6 +100,7 @@ function displayShow(show) {
     showList.forEach(function(showArrayElement, showArrayIndex){
       if (showArrayElement.id == item.getAttribute('data-id')) {
         showList.splice(showArrayIndex, 1)
+        
       }
       console.log(showList);
     })
@@ -356,7 +350,7 @@ updateLayout(false); // Set initial state to not expanded
 
 
 
-// +++++  METHOD 8 ver.3 = tv shows, favourating(local storage)
+// ------------ START JS:  Management of Local Storage for Asian TV Show Bookmark ------------ //
 //Referencing the code I modified from 'Masud Rana' (Youtube Tutorial): https://www.youtube.com/watch?v=8q5T1rFtRoE
 //Referencing the API source I used from 'TMDB': https://www.themoviedb.org/settings/api
 
@@ -396,7 +390,7 @@ async function getAsianShows(url) {
 // --- Filter TV Shows by Asian region
 function filterAsianTVShows(asianShows) {
   return asianShows.filter((asianShow) => {
-    const desiredCountries = ["JP", "CN", "KR", "TH", "HK", "ID", "PH", "VN", "MY", "SG", "TW", "LA", "MY", "MN", "MM", "TW", , "IN"]; //ISO 3166-1 alpha-2 country codes 
+    const desiredCountries = ["JP", "CN", "KR", "TH", "HK", "ID", "PH", "VN", "MY", "SG", "TW", "LA", "MM", "IN"]; //ISO 3166-1 alpha-2 country codes 
     return asianShow.origin_country.some((country) => desiredCountries.includes(country)); // Filtering the search result from the listed countries in the above array
   });
 }
@@ -424,7 +418,7 @@ function displayAsianShows(asianShows) {
     //a conditional check to handle cases where the cover image is NOT found:
     const imageUrl = asianShow.poster_path
     ? imgBaseUrl + imgSize + asianShow.poster_path
-    : "https://cringemdb.com/img/movie-poster-placeholder.png"; // <--My fallback image URL
+    : "https://cringemdb.com/img/movie-poster-placeholder.png"; // <--My fallback image URL when the TMDb poster doesn't load
 
     //overwriting the HTML:
     div.innerHTML = `
@@ -445,8 +439,6 @@ function displayAsianShows(asianShows) {
     `;
     asianShowsDiv.appendChild(div); // <-- append the new html div to the 'asianShowsDiv'
   });
-
-
 
 
 
@@ -516,12 +508,7 @@ function updateCollection() {
 
       list.appendChild(listItem)
     });
-  } else {
-    // If collection is empty, display a message in the Collection List for user
-    let message = document.createElement('li');
-    message.textContent = "No shows currently saved to your collection.";
-    list.appendChild(message);
-  }
+  } 
 }
 
 
@@ -530,21 +517,7 @@ let clearButton = document.getElementById('clearBtn');
 clearButton.addEventListener("click", (event) => {
   // Clear the Local Storage
   localStorage.removeItem('collection');
-
-  // Iterate through showList and remove each element from the DOM
-  showList.forEach((show) => {
-    let item = document.querySelector(`li[data-id='${show.id}']`);
-    if (item) {
-      item.remove();
-    }
-  });
-
-  // Clear the showList array
-  showList = [];
-
-  // Save the cleared showList to localStorage
-  localStorage.setItem('showList', JSON.stringify(showList));
-
+  
   updateCollection();
 })
 } 

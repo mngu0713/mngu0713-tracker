@@ -106,31 +106,31 @@ After the planning process, I proceeded to the implementation phases:
 #### <mark>**Feature #1: Fetch Data from API**</mark>: The application fetches TV shows data from TheMovieDB API using the fetch() method. The JSON data is then parsed, and the relevant parts are extracted and displayed on the page.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| Struggled with obtaining the API key due to unfamiliarity with different database requirements and login procedures, which proved to be time-consuming.  | N/A |  Enhanced understanding and proficiency by repeatedly viewing various YouTube tutorials on fetching API keys with TMDb and consulting the TMDb API documentation. As a result, I was able to filter data by customising on the link. |  <img src="readme-img/iterations/api-link-after.png" width="900"/> |
+| Struggled with obtaining the API key due to unfamiliarity with different database requirements and login procedures, which proved to be time-consuming.  | N/A |  Enhanced understanding and proficiency by repeatedly viewing various YouTube tutorials on fetching API keys with TMDb and consulting the TMDb API documentation. As a result, I was able to filter data by customising on the link. |  <img src="readme-img/iterations/api-link-after.png" width="900" style="border-radius: 5px"/> |
 <br>
 
 #### <mark>**Feature #2: Search Shows**</mark>: The web app allows users to search for their favorite shows through the fetched API using a search input box. 
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| The search function returned too many results or irrelevant results, outside of the Asian TV Show scope.  | <img src="#" width="300"/> |  To refine the search function, I customised the API link to include additional filters, like 'tv', thus narrowing down the search results. I also declared a function to filter TV shows based on the listed countries, providing more relevant content to users. | <img src="#" width="300"/> |
+| The search function returned too many results or irrelevant results, outside of the Asian TV Show scope.  | N/A |  To refine the search function, I customised the API link to include additional filters, like 'tv', thus narrowing down the search results. I also declared a function to filter TV shows based on the listed countries, providing more relevant content to users. | <img src="readme-img/iterations/search-result.png" alt="An example of the search result limited to Asian TV Shows only" width="1000" style="border-radius: 5px"/> |
 <br>
 
 #### <mark>**Feature #3: Bookmark Shows**</mark>: Users can bookmark their favorite shows to a personalized list called "Your Collection". The application stores the list locally using the localStorage object in JavaScript.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| Weren't able to edit the style of the bookmarked shows that appeared in the 'Your Collection' section, leading to unreadable text.  | <img src="#" width="300"/> |   | <img src="#" width="300"/> |
+| Weren't able to edit the style of the bookmarked shows that appeared in the 'Your Collection' section, leading to unreadable text.  | <img src="readme-img/iterations/bookmark-shows-before.png" width="230" style="border-radius: 5px"/> |  *Not Yet Solved* | N/A |
 <br>
 
 #### <mark>**Feature #4: Review Shows**</mark>: Users can click on the "+Add Review" button to open a pop-up form to add new review of their watched TV shows.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| Initially, the form were supposed to be for user to input show's detail to search for shows by fetching API (not the search bar), howevever, I weren't able to ustilise the form's user input to fetch the API and add additional review/comments into it at the same time. | <img src="#" width="300"/> |  Incoporated a search bar, which the TMDb APi documentation provided details on how to fetch API through a search bar using individual key number. And the form changed to handle user input for reviews/comments only. | <img src="#" width="300"/>
+| Initially, the form were supposed to be for user to input show's detail to search for shows by fetching API (not the search bar), howevever, I weren't able to ustilise the form's user input to fetch the API and add additional review/comments into it at the same time. | N/A |  Incoporated a search bar, which the TMDb APi documentation provided details on how to fetch API through a search bar using individual key number. And the form changed to handle user input for reviews/comments only. | <img src="readme-img/iterations/review-show.png" width="700" style="border-radius: 5px"/>
 <br>
 
-#### <mark>**Feature #5: Clear Collection List**</mark>: User can clear their entire saved TV show collection in the localStorage by clicking the "Clear Collection" button.
+#### <mark>**Feature #5: Delete Reviews**</mark>: User can delete their reviews with the "Delete" button.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| 'Clear Collection' button clear the whole local storage where the Show Review are also linked to | <img src="#" width="300"/> |  ... | <img src="#" width="300"/> |
+| 'Delete' button does deleted the review until user refresh their page, which means the review is still stored in the localStorage | N/A | *Not Yet Solved*. The Review inputs are stored in the same storage as the bookmarked shows due to previous attempts towards a different type of functionality. This created more complications for me to resolve. | N/A |
 <br>
 
 #### <mark>**Feature #6: Show Tracking Graph**</mark>: Uses the Plotly.js library to plot the users' monthly watch time for different category of Asian TV shows (e.g. Korean Drama, Thai Drama, etc...) using a multiple line graph.
