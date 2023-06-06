@@ -1,5 +1,5 @@
 // -----  START JS: FETCH DATA FROM API ----- //
-// Code are referenced from Wk5 DECO2017 tutorial content
+// Code are referenced from Wk5 DECO2017 (University of Sydney) tutorial content
 
 // 1. Store the element with the class 'content' as a variable for later use
 const content = document.querySelector('.form-container')
@@ -363,7 +363,6 @@ updateLayout(false); // Set initial state to not expanded
 // --- Storing Elements
 const apiURL = "https://api.themoviedb.org/3/discover/tv?sort_by-popularity.desc&api_key=6f0b2683b85ef3e1a6c84e9227158c71"; //discover API data is sorted by popularity
 const searchAPI = "https://api.themoviedb.org/3/search/tv?&api_key=6f0b2683b85ef3e1a6c84e9227158c71&page=1&query="; //API data for search results
-
 const imgBaseUrl = "https://image.tmdb.org/t/p/";
 const imgSize = "w1280";
 
