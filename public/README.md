@@ -106,7 +106,9 @@ After the planning process, I proceeded to the implementation phases:
 #### <mark>**Feature #1: Fetch Data from API**</mark>: The application fetches TV shows data from TheMovieDB API using the fetch() method. The JSON data is then parsed, and the relevant parts are extracted and displayed on the page.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| Struggled with obtaining the API key due to unfamiliarity with different database requirements and login procedures, which proved to be time-consuming.  | N/A |  Enhanced understanding and proficiency by repeatedly viewing various YouTube tutorials on fetching API keys with TMDb and consulting the TMDb API documentation. As a result, I was able to filter data by customising on the link. |  <img src="readme-img/iterations/api-link-after.png" width="900" style="border-radius: 5px"/> |
+| Struggled with obtaining the API key due to unfamiliarity with different database requirements and login procedures, which proved to be time-consuming.  | N/A |  Enhanced understanding and proficiency by repeatedly viewing various YouTube tutorials on fetching API keys with TMDb and consulting the TMDb API documentation. As a result, I was able to filter data by customising on the link. | <img src="readme-img/iterations/api-link-after.png" width="500" style="border-radius: 5px"/> |
+| Shows that did not have a poster image caused layout issues | N/A | Provided a fallback image for shows without a poster in the TDMb API | <img src="readme-img/iterations/fallback-poster-after.png" width="500" style="border-radius: 5px"/>
+| The fetched data showing on the show card displayed minimal information abotu the show | N/A | Created a dialog element to handle a pop-up when user click on the show card, and add an additional `/tv/{tv_id}/credits` endpoint from the TMDb API to return more information, such as the cast | <img src="readme-img/iterations/show-card-dialog-after.png" width="500" style="border-radius: 5px"/>
 <br>
 
 #### <mark>**Feature #2: Search Shows**</mark>: The web app allows users to search for their favorite shows through the fetched API using a search input box. 
@@ -118,13 +120,14 @@ After the planning process, I proceeded to the implementation phases:
 #### <mark>**Feature #3: Bookmark Shows**</mark>: Users can bookmark their favorite shows to a personalized list called "Your Collection". The application stores the list locally using the localStorage object in JavaScript.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| Weren't able to edit the style of the bookmarked shows that appeared in the 'Your Collection' section, leading to unreadable text.  | <img src="readme-img/iterations/bookmark-shows-before.png" width="230" style="border-radius: 5px"/> |  *Not Yet Solved* | N/A |
+| 1. Weren't able to edit the style of the bookmarked shows that appeared in the 'Your Collection' section, leading to unreadable text.| <img src="readme-img/iterations/bookmark-shows-before.png" width="230" style="border-radius: 5px"> | *Not Yet Solved* | N/A  |
+| 2. Bookmark active state disappeared when page refreshed. | <img src="readme-img/iterations/bookmark-active-before.png" width="350" style="border-radius: 5px"/> | Update the displayAsianShows function to check if each show is bookmarked or not, to preserve the active state of the bookmark icon. | <img src="readme-img/iterations/bookmark-active-after.png" width="350" style="border-radius: 5px"> |
 <br>
 
 #### <mark>**Feature #4: Review Shows**</mark>: Users can click on the "+Add Review" button to open a pop-up form to add new review of their watched TV shows.
 | Problem Faced | Before (Iteration #1) | Solution | After (Iteration #2) |
 | :-----------  | :------------------:  | :------- | :------------------: |
-| Initially, the form were supposed to be for user to input show's detail to search for shows by fetching API (not the search bar), howevever, I weren't able to ustilise the form's user input to fetch the API and add additional review/comments into it at the same time. | N/A |  Incoporated a search bar, which the TMDb APi documentation provided details on how to fetch API through a search bar using individual key number. And the form changed to handle user input for reviews/comments only. | <img src="readme-img/iterations/review-show.png" width="700" style="border-radius: 5px"/>
+| Initially, the form were supposed to be for user to input show's detail to search for shows by fetching API (not the search bar), howevever, I weren't able to ustilise the form's user input to fetch the API and add additional review/comments into it at the same time. | N/A |  Incoporated a search bar, which the TMDb APi documentation provided details on how to fetch API through a search bar using individual key number. And the form changed to handle user input for reviews/comments only. | <img src="readme-img/iterations/form-after.png" width="700" style="border-radius: 5px"/> <br><img src="readme-img/iterations/review-show.png" width="700" style="border-radius: 5px"/> 
 <br>
 
 #### <mark>**Feature #5: Delete Reviews**</mark>: User can delete their reviews with the "Delete" button.
@@ -281,16 +284,20 @@ After downloading or cloning the repository, continue with these steps in your t
 ## 📽 REFERENCES
 <br>
 
+Dongas R. (2023). *Univeristy of Sydney: Week 4 DECO2017 Tutorial*. Scrimba. Retrieved from https://scrimba.com/scrim/coa064ba08c96c1639bc9531b
+
+Dongas R. (2023). *Univeristy of Sydney: Week 10 DECO2017 Tutorial*. Scrimba. Retrieved from https://scrimba.com/scrim/c7L6ZGC8
+
 Font Awesome. (2023). *Home page*. Retrieved from https://fontawesome.com/
 
 Layoutit!. (2023). *CSS Grid Layout Generator*. Retrieved from https://grid.layoutit.com/
-
-University of Sydney. (n.d.). *DECO2017 - Week 5 Tutorial Content*. Retrieved from USYD Canva.
-
-Dongas R. (2023). *Univeristy of Sydney: Week 4 DECO2017 Tutorial*. Scrimba. Retrieved from https://scrimba.com/scrim/coa064ba08c96c1639bc9531b
 
 Rana, M. (n.d.). *Movie app list searching api project using javascript* [Video]. YouTube. Retrieved from https://www.youtube.com/watch?v=8q5T1rFtRoE
 
 The Movie Database. (n.d.). *API Source for TV Shows Data*. Retrieved from https://www.themoviedb.org/settings/api
 
-Dongas R. (2023). *Univeristy of Sydney: Week 10 DECO2017 Tutorial*. Scrimba. Retrieved from https://scrimba.com/scrim/c7L6ZGC8
+University of Sydney. (n.d.). *DECO2017 - Week 5 Tutorial Content*. Retrieved from USYD Canva.
+
+Web Dev Simplified Blog. (2023). Modals Will Never Be The Same - HTML dialog Element. Retrieved from https://blog.webdevsimplified.com/2023-04/html-dialog/
+
+Web Dev Simplified. (2023). The New dialog HTML Element Changes Modals Forever. Retrieved from https://www.youtube.com/watch?v=ywtkJkxJsdg

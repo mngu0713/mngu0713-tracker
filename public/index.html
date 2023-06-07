@@ -13,7 +13,6 @@
 </head>
 
 
-
 <body>
   <header>
     <nav class="navbar">
@@ -23,6 +22,7 @@
 
     <!-- <h1>ASIAN SHOW TRACKER</h1> -->
     <!-- FORM POP UP (after clicking "+ Add New" button ) -->
+    <!-- I discovered the use of dialog in Web Dev Simplified Youtube Tutorial: https://www.youtube.com/watch?v=ywtkJkxJsdg-->
     <dialog class="pop-up-form" id="pop-up-form" aria-labelledby="form-title" aria-describedby="form-description">
       <form class="form-container">
         <h2 id="form-title">+ Add New</h2>
@@ -100,10 +100,11 @@
         <!-- !!! NEED FIX !!!: Currently, sometime the expanded Plot works fine, but sometime the expanded Plot 
           get squished together after a page refresh, which will need some resizing of screensize to prompt the graph to look like usual.-->
         <button class="plot-button" id="show-dialog">Open</button>
-
+        <!-- I continue the use of dialog through the influence of the Web Dev Simplified Youtube: https://www.youtube.com/watch?v=ywtkJkxJsdg -->
+        <!-- As well as the from Web Dev Simplified Blog: "https://blog.webdevsimplified.com/2023-04/html-dialog/" -->
         <dialog id="myDialog">
-          <div id="dialog-content"></div>
           <button class="plot-button" id="close-dialog" onclick="closeDialog()">Close</button>
+          <div id="dialog-content"></div>
         </dialog>
       </article>
 

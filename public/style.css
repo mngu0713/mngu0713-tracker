@@ -79,7 +79,6 @@
 
   .your-show-list {
     grid-area: 2 / 1 / 3 / 2;
-
   }
 
   .your-stats {
@@ -93,7 +92,6 @@
   .main-section {
     grid-area: 3 / 1 / 5 / 2;
   }
-
 }
 
 /* ----- END CSS: WEB PAGE GRID ----- */
@@ -106,7 +104,6 @@
 html {
   background-color: #23324A;
 }
-
 
 .tracking-application-container {
   /* background-color: #b66345; */
@@ -172,7 +169,6 @@ li {
 }
 
 
-
 /* MEDIA QUERY: 'Your Show List' Section  */
 @media screen and (max-width: 1250px) {
   li {
@@ -181,19 +177,20 @@ li {
     /* 3 items per row when the viewport width is 1250px or less */
   }
 }
+
 @media screen and (max-width: 1000px) {
   li {
     /* 2 items per row when the viewport width is 1000px or less */
     width: calc(50% - 0.8rem);
   }
 }
+
 @media screen and (max-width: 600px) {
   li {
     /* 1 item per row when the viewport width is 700px or less */
     width: calc(100% - 0.8rem);
   }
 }
-
 
 /* ----- END CSS: Styling for 'Your Show List' Section ----- */
 
@@ -253,6 +250,7 @@ li {
   top: 50%;
   transform: translateY(-50%);
 }
+
 /* ----- END CSS: SEARCH BOX ----- */
 
 
@@ -312,13 +310,11 @@ li {
   padding: 40px 60px 15px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15); */
-
 .form-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
 
 #form-title {
   font-size: 20pt;
@@ -415,7 +411,6 @@ li {
   font-size: 1rem;
 }
 
-
 /* a blur background effect when pop-up-form is active */
 .blur-effect {
   filter: blur(10px);
@@ -457,13 +452,10 @@ li {
   box-sizing: border-box;
 }
 
-/* start here */
-
 .listAPI {
   width: 100%;
   display: fixed;
 }
-
 
 .asianShows-container>p {
   font-size: 2rem;
@@ -488,7 +480,7 @@ li {
   border-radius: 10px;
   margin: 0 2rem 2rem 0;
   /* to prompt the action that user can click on it to expand */
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .asianShow img {
@@ -587,23 +579,38 @@ li {
 .dialog-card-details {
   border-radius: 10px;
   max-width: 400px;
-  max-height: 600px; 
+  max-height: 600px;
+  background-color: #141726;
+  border: #0a1522;
+  padding: 20px 50px;
 }
+
 .dialog-content {
   display: flex;
   align-items: flex-start;
 }
+
 .dialog-image {
   object-fit: cover;
   display: block;
   border-radius: 10px;
   margin-right: 10px;
   margin-top: 10px;
+  width: 100%;
+  height: 250px;
+  image-resolution: 100%;
 }
 
 .dialog-text {
   flex: 1;
+  color: #fff;
 }
+
+.dialog-heading {
+  font-size: 25px;
+  padding-top: 10px;
+}
+
 .close-card-detail-dialog {
   padding: 7px 13px;
   font-size: 14px;
@@ -615,11 +622,12 @@ li {
   border: 1px solid rgb(31, 35, 43);
   cursor: pointer;
   transition: background-color 0.1s;
-  
 }
+
 .close-card-detail-dialog:hover {
   background-color: #aeaeae;
 }
+
 body.dialog-open {
   overflow: hidden;
 }
@@ -657,7 +665,6 @@ body.dialog-open {
 
 
 /* --- CSS START: Your Collection --- */
-
 .collection-local-storage {
   grid-area: aside;
   color: white;
@@ -678,6 +685,7 @@ body.dialog-open {
   margin: 20px 0;
 }
 
+/* 'Clear Collection' Button */
 #clearBtn {
   width: 100%;
   margin: 1em auto;

@@ -347,7 +347,7 @@ const apiURL = "https://api.themoviedb.org/3/discover/tv?sort_by-popularity.desc
 const searchAPI = "https://api.themoviedb.org/3/search/tv?&api_key=6f0b2683b85ef3e1a6c84e9227158c71&page=1&query="; //API data for search results
 const imgBaseUrl = "https://image.tmdb.org/t/p/";
 const imgSize = "w1280";
-const dialogImgSize = "w200"; // Image size for the dialog card details
+const dialogImgSize = "w500"; // Image size for the dialog card details
 
 // --- Declare Elements
 let asianShowsDiv = document.querySelector(".asianShows");
@@ -389,6 +389,9 @@ function filterAsianTVShows(asianShows) {
 function displayAsianShows(asianShows) {
   asianShowsDiv.innerHTML = "";
 
+  // Load the bookmarked shows from local storage
+  let collection = JSON.parse(localStorage.getItem("collection"));
+
   //a conditional check for a "message" when search is NOT found (or empty):
   if (asianShows.length === 0) { // <-- If indeed empty
     const message = document.createElement("p"); // <-- create a message element
@@ -403,6 +406,10 @@ function displayAsianShows(asianShows) {
   asianShows.forEach((asianShow) => {
     const div = document.createElement("div");
     div.classList.add("asianShow");
+
+    // Check if the show is bookmarked
+    const isBookmarked = collection && collection.some((show) => show.name === asianShow.name);
+    const bookmarkIconClass = isBookmarked ? "fas fa-bookmark bookmark-icon active" : "fas fa-bookmark bookmark-icon";
 
     //a conditional check to handle cases where the cover image is NOT found:
     const imageUrl = asianShow.poster_path
@@ -419,8 +426,8 @@ function displayAsianShows(asianShows) {
           <p class="rate">Rating: <span class="rating">${asianShow.vote_average}</span> 
           </p>
           <div class="bookmark"> 
-              <i class="fas fa-bookmark bookmark-icon"></i>
-           </div>
+             <i class="${bookmarkIconClass}"></i>
+          </div>
         </div>
      <p class="overview"> ${asianShow.overview}</p>
      </div>
@@ -448,6 +455,7 @@ function displayAsianShows(asianShows) {
         reviewsHTML += `<p><strong>${review.author}:</strong> ${review.content}</p>`;
       });
 
+
       // Fetch credits (cast and crew)
       res = await fetch(`https://api.themoviedb.org/3/tv/${asianShow.id}/credits?api_key=6f0b2683b85ef3e1a6c84e9227158c71`);
       let credits = await res.json();
@@ -471,7 +479,7 @@ function displayAsianShows(asianShows) {
       dialogCardDetails.innerHTML = `
       <img class="dialog-image" src="${imgBaseUrl + dialogImgSize + showDetails.poster_path}" alt="${showDetails.name} image poster"/>
       <div class="dialog-text">
-      <h3>${showDetails.name}</h3>
+      <h3 class="dialog-heading">${showDetails.name}</h3>
       <p class="dialog-rating"><strong>Average rating:</strong> ⭐️ ${showDetails.vote_average} (${showDetails.vote_count} reviews)</p>
       <p class="dialog-genres"><strong>Genres:</strong> ${genres}</p>
       <p class="dialog-first-air-date"><strong>First air date:</strong> ${showDetails.first_air_date}</p>
@@ -504,7 +512,7 @@ function displayAsianShows(asianShows) {
       dialogCardDetails.showModal();
     });
 
-   
+
     asianShowsDiv.appendChild(div); // <-- append the new html div to the 'asianShowsDiv'
   });
 
@@ -575,6 +583,9 @@ function displayAsianShows(asianShows) {
       });
     }
   }
+  // Call updateCollection() when the page loads to update the bookmark icons
+  updateCollection();
+
 
 
   // WHEN THE COLLECTION LIST GOT CLEARED
