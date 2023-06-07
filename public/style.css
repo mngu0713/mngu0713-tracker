@@ -487,6 +487,8 @@ li {
   width: 25rem;
   border-radius: 10px;
   margin: 0 2rem 2rem 0;
+  /* to prompt the action that user can click on it to expand */
+  cursor: pointer; 
 }
 
 .asianShow img {
@@ -581,6 +583,50 @@ li {
   margin-bottom: 2rem;
 }
 
+/* Expand Show Detail dialog */
+.dialog-card-details {
+  border-radius: 10px;
+  max-width: 400px;
+  max-height: 600px; 
+}
+.dialog-content {
+  display: flex;
+  align-items: flex-start;
+}
+.dialog-image {
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.dialog-text {
+  flex: 1;
+}
+.close-card-detail-dialog {
+  padding: 7px 13px;
+  font-size: 14px;
+  color: white;
+  background-color: #d2d2d2;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid rgb(31, 35, 43);
+  cursor: pointer;
+  transition: background-color 0.1s;
+  
+}
+.close-card-detail-dialog:hover {
+  background-color: #aeaeae;
+}
+body.dialog-open {
+  overflow: hidden;
+}
+
+
+
+
 /* --- Bookmark button ---- */
 .rateAndBookmark {
   margin: 0.8rem 0;
@@ -592,7 +638,7 @@ li {
   cursor: pointer;
 }
 
-#bookmark-icon {
+.bookmark-icon {
   font-size: 20px;
   color: #b4b4b4;
   cursor: pointer;
@@ -603,9 +649,9 @@ li {
 
 }
 
-#bookmark-icon:hover,
-#bookmark-icon:focus,
-#bookmark-icon.active {
+.bookmark-icon:hover,
+.bookmark-icon:focus,
+.bookmark-icon.active {
   color: #e49800;
 }
 
@@ -670,7 +716,7 @@ clearBtn:focus {
 }
 
 .plot-button {
-  padding: 8px 14px;
+  padding: 7px 13px;
   font-size: 14px;
   color: white;
   background-color: #d2d2d2;

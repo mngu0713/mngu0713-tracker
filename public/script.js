@@ -126,12 +126,10 @@ function addShow(title, country, status, rating, comment) {
   // Save showList to localStorage after pushing the new show
   localStorage.setItem('showList', JSON.stringify(showList));
   displayShow(show);
-
 }
 
 // Call the function with test values for the input paramaters
 //addShow("Alice in Borderland", "Japan", "Not Started", 5, "Recommended for those seeking thrilling teamwork-type gameshow");
-
 
 // Log the array to the console.
 console.log(showList);
@@ -148,14 +146,7 @@ window.onload = function () {
   }
 
 };
-
-
 // -----  END JS: ADDING SHOW LIST ----- // 
-
-
-
-
-
 
 
 
@@ -356,6 +347,7 @@ const apiURL = "https://api.themoviedb.org/3/discover/tv?sort_by-popularity.desc
 const searchAPI = "https://api.themoviedb.org/3/search/tv?&api_key=6f0b2683b85ef3e1a6c84e9227158c71&page=1&query="; //API data for search results
 const imgBaseUrl = "https://image.tmdb.org/t/p/";
 const imgSize = "w1280";
+const dialogImgSize = "w200"; // Image size for the dialog card details
 
 // --- Declare Elements
 let asianShowsDiv = document.querySelector(".asianShows");
@@ -419,21 +411,100 @@ function displayAsianShows(asianShows) {
 
     //overwriting the HTML:
     div.innerHTML = `
-    <img src="${imageUrl}" alt="" />
+    <img class="asianShowImg" src="${imageUrl}" alt="${asianShow.name} image poster" />
 
     <div class="card-details">
-      <h2 class="title">${asianShow.name}</h2>
+      <h2 class="title asianShowTitle">${asianShow.name}</h2>
       <div class="rateAndBookmark">
           <p class="rate">Rating: <span class="rating">${asianShow.vote_average}</span> 
           </p>
           <div class="bookmark"> 
-              <i class="fas fa-bookmark" id="bookmark-icon"></i>
+              <i class="fas fa-bookmark bookmark-icon"></i>
            </div>
-          
         </div>
      <p class="overview"> ${asianShow.overview}</p>
      </div>
+  `;
+
+    div.addEventListener("click", async function (e) {
+      // Check if the click was on the bookmark
+      if (e.target.closest(".bookmark")) {
+        return; // If so, exit the function early
+      }
+
+      // Fetch details about the show
+      let res = await fetch(`https://api.themoviedb.org/3/tv/${asianShow.id}?api_key=6f0b2683b85ef3e1a6c84e9227158c71`);
+      let showDetails = await res.json();
+
+      //Commas to separate the genres
+      let genres = showDetails.genres.map(genre => genre.name).join(', ');
+
+      // Fetch reviews about the show
+      res = await fetch(`https://api.themoviedb.org/3/tv/${asianShow.id}/reviews?api_key=6f0b2683b85ef3e1a6c84e9227158c71`);
+      let reviews = await res.json();
+      // Handle the reviews
+      let reviewsHTML = '';
+      reviews.results.forEach(review => {
+        reviewsHTML += `<p><strong>${review.author}:</strong> ${review.content}</p>`;
+      });
+
+      // Fetch credits (cast and crew)
+      res = await fetch(`https://api.themoviedb.org/3/tv/${asianShow.id}/credits?api_key=6f0b2683b85ef3e1a6c84e9227158c71`);
+      let credits = await res.json();
+      // Filter for directors
+      //cannot use director as there maybe different dirrectors for a tv show and the credits in TMDb API do not have these updates
+      //let directors = credits.crew.filter(member => member.job === 'Director').map(director => director.name).join(', ');
+      // Use creator instead but check if it is available:
+      let creators = showDetails.created_by.length > 0 ? showDetails.created_by.map(creator => creator.name).join(', ') : 'N/A';
+
+      // Get actors (limited to 5 here, change the number to suit your needs)
+      let actors = credits.cast.slice(0, 5).map(actor => actor.name).join(', ');
+
+      // Close dialog function
+      function closeDialog(dialog) {
+        dialog.close();
+      }
+
+      // Create a dialog pop-up for more details
+      let dialogCardDetails = document.createElement("dialog");
+      dialogCardDetails.classList.add("dialog-card-details"); //add a class for styling 
+      dialogCardDetails.innerHTML = `
+      <img class="dialog-image" src="${imgBaseUrl + dialogImgSize + showDetails.poster_path}" alt="${showDetails.name} image poster"/>
+      <div class="dialog-text">
+      <h3>${showDetails.name}</h3>
+      <p class="dialog-rating"><strong>Average rating:</strong> ⭐️ ${showDetails.vote_average} (${showDetails.vote_count} reviews)</p>
+      <p class="dialog-genres"><strong>Genres:</strong> ${genres}</p>
+      <p class="dialog-first-air-date"><strong>First air date:</strong> ${showDetails.first_air_date}</p>
+      <p class="dialog-seasons"><strong>Number of seasons:</strong> ${showDetails.number_of_seasons}</p>
+      <p class="dialog-episodes"><strong>Number of episodes:</strong> ${showDetails.number_of_episodes}</p>
+      <p class="dialog-directors"><strong>Directors:</strong> ${creators}</p>
+      <p class="dialog-cast"><strong>Cast:</strong> ${actors}</p>
+      <p class="dialog-overview"><strong>Overview:</strong> ${showDetails.overview}</p>
+      ${reviewsHTML}
+      </div>
     `;
+
+      blurElement.classList.add("blur-effect"); // Add the blur effect when the dialog is opened
+
+      // Close button for Card-Details dialog
+      let closeButton = document.createElement("button");
+      closeButton.classList.add("close-card-detail-dialog");
+      closeButton.textContent = "Close";
+      closeButton.addEventListener("click", function () {
+        dialogCardDetails.close();
+        blurElement.classList.remove("blur-effect"); // Remove the blur effect when the dialog is closed
+        document.body.classList.remove("dialog-open"); // Remove the class to re-enable scrolling
+      });
+      // Append the close button at the top of the dialog
+      dialogCardDetails.insertBefore(closeButton, dialogCardDetails.firstChild);
+
+      // Append the dialog to the body and open it
+      document.body.appendChild(dialogCardDetails);
+      document.body.classList.add("dialog-open"); // Add a class to the body to disable scrolling
+      dialogCardDetails.showModal();
+    });
+
+   
     asianShowsDiv.appendChild(div); // <-- append the new html div to the 'asianShowsDiv'
   });
 
@@ -444,43 +515,40 @@ function displayAsianShows(asianShows) {
   //I modified Wk10 Scrimba's steps about Local Storage to save TV Shows.
   // ---The event in which user click the bookmark icon on TV show card to their favourites list in local storage
   asianShowsDiv.addEventListener("click", (e) => {
-    if (e.target.classList.contains("fa-bookmark")) {
+    if (e.target.classList.contains("bookmark-icon")) {
       const selectedShow = e.target.closest(".asianShow");
       const showName = selectedShow.querySelector(".title").textContent;
 
-      // Retrieve the existing Collection list from user's local storage
-      // let collection = localStorage.getItem("collection");
-      // collection = collection ? JSON.parse(collection) : [];
       let collection = JSON.parse(localStorage.getItem('collection'));
 
       if (collection === null) {
         // Initialize an empty array if the collection is null
         collection = [];
       }
-      console.log(collection);
-
 
       // Check if the selected show is already in the Collection
-      const isNewlyAdded = collection.some((show) => show.name === showName);
+      const showIndex = collection.findIndex((show) => show.name === showName);
+      const isAlreadyAdded = showIndex !== -1;
 
-      if (!isNewlyAdded) {
+      if (!isAlreadyAdded) {
         // Add the selected show to the favorites list:
         collection.push({ name: showName });
-        // Update the favorites list in local storage:
-        localStorage.setItem("collection", JSON.stringify(collection));
-        // Display a success message:
-        console.log(`${showName} added to your Collection!`);
-
-        // Add the new class to the title of the show
-        selectedShow.querySelector(".title").classList.add("newlyAddedShow");
-
-
+        // Add the 'active' class to the bookmark icon
+        e.target.classList.add('active');
       } else {
-        // Display a message 
-        console.log(`${showName} already exist in your Collection.`);
+        // Remove the selected show from the favorites list:
+        collection.splice(showIndex, 1);
+        // Remove the 'active' class from the bookmark icon
+        e.target.classList.remove('active');
       }
+
+      // Update the favorites list in local storage:
+      localStorage.setItem("collection", JSON.stringify(collection));
+
+      // Print the current collection to the console
+      console.log(collection);
     }
-    updateCollection()
+    updateCollection();
   });
 
 
@@ -514,6 +582,12 @@ function displayAsianShows(asianShows) {
   clearButton.addEventListener("click", (event) => {
     // Clear the Local Storage
     localStorage.removeItem('collection');
+
+    // Remove active class from all bookmark icons
+    let bookmarkIcons = document.querySelectorAll('.bookmark-icon.active');
+    bookmarkIcons.forEach((icon) => {
+      icon.classList.remove('active');
+    });
 
     updateCollection();
   })
